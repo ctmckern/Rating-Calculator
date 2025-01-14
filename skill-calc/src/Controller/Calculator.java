@@ -6,6 +6,8 @@ will ask for multiple numbers we need something that constructs said array, coul
 array though, nothing fancy.
  */
 
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
@@ -33,5 +35,9 @@ public class Calculator {
 
     private double chanceToWin(double denominator){
         return 1/denominator;
+    }
+    public Calculator(InputStream input, OutputStream output){
+        this.out = new PrintWriter(output);
+        this.in = new Scanner(input);
     }
 }
