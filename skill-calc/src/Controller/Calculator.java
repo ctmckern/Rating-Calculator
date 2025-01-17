@@ -1,9 +1,6 @@
 package Controller;
 
-/* Needs to accept integers but be able to return a double point float
-Since it needs to use multiple integers at once we need to pass an array, however since the prompt
-will ask for multiple numbers we need something that constructs said array, could be a basic
-array though, nothing fancy.
+/*
  */
 
 import java.io.InputStream;
@@ -26,6 +23,11 @@ public class Calculator {
         String userInput = in.nextLine();
         playerRatings[ratingsIndex] = Double.parseDouble(userInput);
         ratingsIndex ++;
+    }
+
+    private void displayPrompt(Object[] objects, int i){
+        out.println();
+        out.print(System.lineSeparator() + objects[i]);
     }
 
     private double denominator(int[]match){
