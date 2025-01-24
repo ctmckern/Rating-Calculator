@@ -1,11 +1,19 @@
 import Controller.Calculator;
 
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.Scanner;
 
 
 public class Base {
 
     private Calculator calculator;
+
+    private Scanner in = new Scanner(System.in);
+
+    public Base() {
+
+    }
 
     public Base(Calculator calculator) {
         this.calculator = calculator;
@@ -25,6 +33,7 @@ public class Base {
     //This marks the end of the block of code containing everything the program says.
 
     private double rating;
+    private static double[] ratingArray;
     private double expectation;
     //kFactor variable below will be arbitrary 24. There is a formula for calculating but it's impractical here.
     private double kFactor = 24;
@@ -40,24 +49,42 @@ public class Base {
     A method to pass the input into(I believe calculator has one for this)
      */
 
-        private void displayPrompts(Object object){
-
-        }
-    public void run(){
-
+    private void getRatingFromUserInput(double[] Ratings, int index) {
+        String input = in.nextLine();
+        rating = Double.parseDouble(input);
+        setRatingArray(Ratings, index, rating);
+        index++;
+        System.out.println();
     }
 
-    public static void main(String[] args){
-        Calculator calculator = new Calculator(System.in, System.out);
+    private void setRatingArray(double[] Ratings, int index, double rating){
+        Ratings[index] = rating;
+    }
 
-        double firstRating = 1152;
-        double secondRating = 1286;
-        double testDifference = (double)(1152 - 1286)/400;
-        double testNumber = Math.pow(10, testDifference);
-        double kFactor = 32;
-        double expectedScore = (1/(1+testNumber));
-        double changeInRating = firstRating + kFactor * (1 - expectedScore);
-        System.out.println(expectedScore);
-        System.out.println("hello");
+    private void displayRatings(double[] ratings) {
+        for (int n = 0; n <= ratingArray.length; n++) {
+            System.out.println(ratingArray[n]);
+        }
+    }
+
+    private void displayPrompts(Object object) {
+        System.out.println("Please enter player one's rating.");
+    }
+
+    public void run() {
+        calculator.displayPrompt(MAIN_MENU_PROMPTS, 0);
+    }
+
+    public static void main(String[] args) {
+        int i = 0;
+        Base cli = new Base();
+        double[] ratingArray = new double[2];
+        cli.getRatingFromUserInput(ratingArray, i);
+        if (i > 1) {
+            cli.displayRatings(ratingArray);
+        }
+        else {
+            cli.getRatingFromUserInput(ratingArray, i);
+        }
     }
 }

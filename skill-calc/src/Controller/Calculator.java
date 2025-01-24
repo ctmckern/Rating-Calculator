@@ -3,6 +3,7 @@ package Controller;
 /*
  */
 
+import java.io.*;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -19,15 +20,20 @@ public class Calculator {
 //    private void setMatch(int playerRating, int playerCount){
 //        match[playerCount] = playerRating;
 //    }
-    private void getRatingFromUserInput (){
+
+    public Calculator(InputStream input, OutputStream output){
+        this.out = new PrintWriter(output);
+        this.in = new Scanner(input);
+    }
+
+    private void setRatingFromUserInput (){
         String userInput = in.nextLine();
         playerRatings[ratingsIndex] = Double.parseDouble(userInput);
         ratingsIndex ++;
     }
 
-    private void displayPrompt(Object[] objects, int i){
-        out.println();
-        out.print(System.lineSeparator() + objects[i]);
+    public void displayPrompt(Object[] objects, int i){
+        out.println("hello");
     }
 
     private double denominator(int[]match){
@@ -38,8 +44,6 @@ public class Calculator {
     private double chanceToWin(double denominator){
         return 1/denominator;
     }
-    public Calculator(InputStream input, OutputStream output){
-        this.out = new PrintWriter(output);
-        this.in = new Scanner(input);
-    }
+
+
 }
