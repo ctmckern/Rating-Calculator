@@ -32,6 +32,7 @@ public class Base {
             MAIN_MENU_POSSIBLE_WINS_OR_LOSSES, MAIN_MENU_POSSIBLE_LOSSES};
     //This marks the end of the block of code containing everything the program says.
 
+    int i;
     private double rating;
     private static double[] ratingArray;
     private double expectation;
@@ -49,11 +50,10 @@ public class Base {
     A method to pass the input into(I believe calculator has one for this)
      */
 
-    private void getRatingFromUserInput(double[] Ratings, int index) {
+    private void getRatingFromUserInput(double[] ratings, int index) {
         String input = in.nextLine();
         rating = Double.parseDouble(input);
-        setRatingArray(Ratings, index, rating);
-        index++;
+        ratings[index] = rating;
         System.out.println();
     }
 
@@ -62,8 +62,8 @@ public class Base {
     }
 
     private void displayRatings(double[] ratings) {
-        for (int n = 0; n <= ratingArray.length; n++) {
-            System.out.println(ratingArray[n]);
+        for (int n = 0; n < ratings.length; n++) {
+            System.out.println(ratings[n]);
         }
     }
 
@@ -79,12 +79,10 @@ public class Base {
         int i = 0;
         Base cli = new Base();
         double[] ratingArray = new double[2];
-        cli.getRatingFromUserInput(ratingArray, i);
-        if (i > 1) {
-            cli.displayRatings(ratingArray);
-        }
-        else {
+        while (i < 2) {
             cli.getRatingFromUserInput(ratingArray, i);
+            i++;
         }
+        cli.displayRatings(ratingArray);
     }
 }
