@@ -50,7 +50,7 @@ public class Calculator {
 
     public double chanceToWin(double []match){
         double denominator = makeDenominator(match);
-        return 1/denominator;
+        return 1/(1+denominator);
     }
 
 
