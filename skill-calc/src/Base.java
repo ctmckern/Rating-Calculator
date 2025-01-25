@@ -78,8 +78,9 @@ public class Base {
     }
 
     public static void main(String[] args) {
+        Calculator calc = new Calculator();
         int i = 0;
-        Base cli = new Base();
+        Base cli = new Base(calc);
         double[] ratingArray = new double[2];
         while (i < 2) {
             cli.displayPrompt(i);
@@ -87,5 +88,6 @@ public class Base {
             i++;
         }
         cli.displayRatings(ratingArray);
+        System.out.print(cli.calculator.chanceToWin(ratingArray));
     }
 }

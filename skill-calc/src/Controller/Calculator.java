@@ -21,10 +21,17 @@ public class Calculator {
 //        match[playerCount] = playerRating;
 //    }
 
+    public Calculator(){
+
+    }
+
+    /*Currently an unused constructor
+
     public Calculator(InputStream input, OutputStream output){
         this.out = new PrintWriter(output);
         this.in = new Scanner(input);
     }
+    Above is the unused constructor*/
 
     private void setRatingFromUserInput (){
         String userInput = in.nextLine();
@@ -36,12 +43,13 @@ public class Calculator {
         out.println("hello");
     }
 
-    private double denominator(int[]match){
+    private double makeDenominator(double[]match){
         double b = (double)(match[0] - match[1])/400;
         return Math.pow(10, b);
     }
 
-    private double chanceToWin(double denominator){
+    public double chanceToWin(double []match){
+        double denominator = makeDenominator(match);
         return 1/denominator;
     }
 
