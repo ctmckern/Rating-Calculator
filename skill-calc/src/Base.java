@@ -63,12 +63,14 @@ public class Base {
 
     private void displayRatings(double[] ratings) {
         for (int n = 0; n < ratings.length; n++) {
-            System.out.println(ratings[n]);
+            int printableIndex = n+1;
+            System.out.println("Player " + printableIndex  + "'s rating is: " + ratings[n]);
         }
     }
 
-    private void displayPrompts(Object object) {
-        System.out.println("Please enter player one's rating.");
+    private void displayPrompt(int index) {
+        index ++;
+        System.out.println("Please enter player " + index + "'s rating >>");
     }
 
     public void run() {
@@ -80,6 +82,7 @@ public class Base {
         Base cli = new Base();
         double[] ratingArray = new double[2];
         while (i < 2) {
+            cli.displayPrompt(i);
             cli.getRatingFromUserInput(ratingArray, i);
             i++;
         }
