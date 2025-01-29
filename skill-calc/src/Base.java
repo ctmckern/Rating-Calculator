@@ -2,6 +2,7 @@ import Controller.Calculator;
 
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 
@@ -38,6 +39,7 @@ public class Base {
     private double expectation;
     //kFactor variable below will be arbitrary 24. There is a formula for calculating but it's impractical here.
     private double[] kFactors = {16,24,32};
+    private DecimalFormat defo = new DecimalFormat("#.##");
     //Note the Elo expectation formula is logistic with base 10 where x = rating R of player a (Ra)
     //Minus rating R of player b (Rb) divided by 400. This becomes 1/(1+10^((Rb-Ra)/400)
 
@@ -88,6 +90,6 @@ public class Base {
             i++;
         }
         cli.displayRatings(ratingArray);
-        System.out.print(cli.calculator.chanceToWin(ratingArray));
+        System.out.print(cli.defo.format(cli.calculator.chanceToWin(ratingArray)));
     }
 }
