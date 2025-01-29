@@ -47,9 +47,9 @@ public class Base {
 
     /*
     To do
-    Initial prompt for user input
-    Scanner to read said input
-    A method to pass the input into(I believe calculator has one for this)
+    Transfer pointsToGain to calculator class(after I'm sure it works though)
+    Work on setting up extensions to calculator for specific skill rating algorithms
+    Develop more prompts for readability and communication
      */
 
     private void getRatingFromUserInput(double[] ratings, int index) {
@@ -57,6 +57,14 @@ public class Base {
         rating = Double.parseDouble(input);
         ratings[index] = rating;
         System.out.println();
+    }
+
+    //pointsToGain should probably be in Calculator
+    private double pointsToGain(double[]ratings, int kFactor, double expectedScore, double actualScore){
+        double a = ratings[0];
+        double b = ratings[1];
+        double results = actualScore - expectedScore;
+        return kFactors[kFactor] * results;
     }
 
     private void setRatingArray(double[] Ratings, int index, double rating){
