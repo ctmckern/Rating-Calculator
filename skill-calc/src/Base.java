@@ -37,7 +37,7 @@ public class Base {
     private static double[] ratingArray;
     private double expectation;
     //kFactor variable below will be arbitrary 24. There is a formula for calculating but it's impractical here.
-    private double kFactor = 24;
+    private double[] kFactors = {16,24,32};
     //Note the Elo expectation formula is logistic with base 10 where x = rating R of player a (Ra)
     //Minus rating R of player b (Rb) divided by 400. This becomes 1/(1+10^((Rb-Ra)/400)
 
