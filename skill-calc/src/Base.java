@@ -60,6 +60,8 @@ public class Base {
     }
 
     //pointsToGain should probably be in Calculator
+    //https://rpubs.com/riazakhan94/logstcdistbasics Some basic info on the logistic distribution
+    //which is what the Elo rating system uses
     private double pointsToGain(double[]ratings, int kFactorIndex, double expectedScore, double actualScore){
         double a = ratings[0];
         double b = ratings[1];

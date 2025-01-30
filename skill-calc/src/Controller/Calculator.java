@@ -10,28 +10,20 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Calculator {
-//    private int playerRating = 0;
-//    private int[] match;
     private PrintWriter out;
     private Scanner in;
     private double[] playerRatings;
     private int ratingsIndex = 0;
-
-//    private void setMatch(int playerRating, int playerCount){
-//        match[playerCount] = playerRating;
-//    }
+//Worth noting that logistiScalar is arbitrary and just used for stretching out the curve.
+    private final double logisticScalar = 400;
+    private final double mu = 0;
+//Mu is the mean, and in this case called the location parameter. In Elo's case the mean is considered the opposing
+//player's skill and the current player's distance is then measured against the scale of the model to determine
+//likelihood that i>j
 
     public Calculator(){
 
     }
-
-    /*Currently an unused constructor
-
-    public Calculator(InputStream input, OutputStream output){
-        this.out = new PrintWriter(output);
-        this.in = new Scanner(input);
-    }
-    Above is the unused constructor*/
 
     private void setRatingFromUserInput (){
         String userInput = in.nextLine();
@@ -39,12 +31,8 @@ public class Calculator {
         ratingsIndex ++;
     }
 
-    public void displayPrompt(Object[] objects, int i){
-        out.println("hello");
-    }
-
     private double makeDenominator(double[]match){
-        double b = (double)(match[0] - match[1])/400;
+        double b = (double)(match[0] - match[1])/logisticScalar;
         return Math.pow(10, b);
     }
 
