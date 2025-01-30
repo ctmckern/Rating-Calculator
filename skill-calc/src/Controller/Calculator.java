@@ -1,11 +1,6 @@
 package Controller;
 
-/*
- */
-
 import java.io.*;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
@@ -14,7 +9,7 @@ public class Calculator {
     private Scanner in;
     private double[] playerRatings;
     private int ratingsIndex = 0;
-//Worth noting that logistiScalar is arbitrary and just used for stretching out the curve.
+//Worth noting that logisticScalar is arbitrary and just used for stretching out the curve.
     private final double logisticScalar = 400;
     private final double mu = 0;
 //Mu is the mean, and in this case called the location parameter. In Elo's case the mean is considered the opposing

@@ -85,9 +85,6 @@ public class Base {
         System.out.println("Please enter player " + index + "'s rating >>");
     }
 
-    public void run() {
-        calculator.displayPrompt(MAIN_MENU_PROMPTS, 0);
-    }
 
     public static void main(String[] args) {
         Calculator calc = new Calculator();
@@ -100,7 +97,11 @@ public class Base {
             i++;
         }
         cli.displayRatings(ratingArray);
-        System.out.println(cli.defo.format(cli.calculator.chanceToWin(ratingArray)));
-        System.out.println(cli.pointsToGain(ratingArray, 0,cli.calculator.chanceToWin(ratingArray), 1));
+        //This is also clunky, trying to get a clean percentage that I can communicate.
+        System.out.println(Double.parseDouble(cli.defo.format(cli.calculator.chanceToWin(ratingArray)))*100);
+        //This below is clunky, I'll need to clean it up.
+        System.out.println(cli.defo.format(cli.pointsToGain(ratingArray,
+                0,cli.calculator.chanceToWin(ratingArray), 1)) +
+                " points will be gained on a win.");
     }
 }
