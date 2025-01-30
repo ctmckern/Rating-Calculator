@@ -38,7 +38,7 @@ public class Base {
     private static double[] ratingArray;
     private double expectation;
     //kFactor variable below will be arbitrary 24. There is a formula for calculating but it's impractical here.
-    private double[] kFactors = {16,24,32};
+    private int[] kFactors = {16,24,32};
     private DecimalFormat defo = new DecimalFormat("#.##");
     //Note the Elo expectation formula is logistic with base 10 where x = rating R of player a (Ra)
     //Minus rating R of player b (Rb) divided by 400. This becomes 1/(1+10^((Rb-Ra)/400)
@@ -60,11 +60,11 @@ public class Base {
     }
 
     //pointsToGain should probably be in Calculator
-    private double pointsToGain(double[]ratings, int kFactor, double expectedScore, double actualScore){
+    private double pointsToGain(double[]ratings, int kFactorIndex, double expectedScore, double actualScore){
         double a = ratings[0];
         double b = ratings[1];
         double results = actualScore - expectedScore;
-        return kFactors[kFactor] * results;
+        return kFactors[kFactorIndex] * results;
     }
 
     private void setRatingArray(double[] Ratings, int index, double rating){
@@ -98,6 +98,7 @@ public class Base {
             i++;
         }
         cli.displayRatings(ratingArray);
-        System.out.print(cli.defo.format(cli.calculator.chanceToWin(ratingArray)));
+        System.out.println(cli.defo.format(cli.calculator.chanceToWin(ratingArray)));
+        System.out.println(cli.pointsToGain(ratingArray, 0,cli.calculator.chanceToWin(ratingArray), 1));
     }
 }
