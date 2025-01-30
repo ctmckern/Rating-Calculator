@@ -1,7 +1,9 @@
 package Model;
 
 //Note the purpose here is to create a player object with a permanent skill rating.
-//We want something that could be easily stored in a database. Means we need getters and setters.
+//We want something that could be easily stored in a database.
+
+//NOT A PRIORITY UNTIL PERSISTENCE LAYER IS STARTED
 public class Player {
     //skillRating is the only variable for Elo.
     private int skillRating;

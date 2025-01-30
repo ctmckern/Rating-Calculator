@@ -98,8 +98,10 @@ public class Base {
         }
         cli.displayRatings(ratingArray);
         //This is also clunky, trying to get a clean percentage that I can communicate.
+        System.out.println();
         System.out.println(Double.parseDouble(cli.defo.format(cli.calculator.chanceToWin(ratingArray)))*100);
         //This below is clunky, I'll need to clean it up.
+        System.out.println();
         System.out.println(cli.defo.format(cli.pointsToGain(ratingArray,
                 0,cli.calculator.chanceToWin(ratingArray), 1)) +
                 " points will be gained on a win.");
