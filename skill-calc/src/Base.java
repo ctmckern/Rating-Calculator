@@ -43,7 +43,6 @@ public class Base {
 
     /*
     To do
-    Transfer pointsToGain to calculator class(after I'm sure it works though)
     Work on setting up extensions to calculator for specific skill rating algorithms
     Develop more prompts for readability and communication
      */
@@ -81,27 +80,36 @@ public class Base {
         System.out.println("Please enter player " + index + "'s rating >>");
     }
 
+    private void displayChances(double formattedChance){
+        System.out.println();
+        System.out.println("Player one has a " + formattedChance + "% chance to win.");
+    }
+
 
     public static void main(String[] args) {
+
         Calculator calc = new Calculator();
+
         int i = 0;
         Base cli = new Base(calc);
         double[] ratingArray = new double[2];
+
         while (i < 2) {
             cli.displayPrompt(i);
             cli.getRatingFromUserInput(ratingArray, i);
             i++;
         }
         cli.displayRatings(ratingArray);
+
         double chance = cli.calculator.chanceToWin(ratingArray);
-        double formatedChance = Double.parseDouble(cli.defo.format(chance))*100;
-        //This is also clunky, trying to get a clean percentage that I can communicate.
-        System.out.println();
-        System.out.println("Player one has a " + formatedChance + "% chance to win.");
+        double formattedChance = Double.parseDouble(cli.defo.format(chance))*100;
+        //actualScore is hardcoded, might be better if I make a prompt for more accurate flexibility
+        double pointsToGain = cli.calculator.pointsToGain(ratingArray, chance, 1);
+
+        cli.displayChances(formattedChance);
         //This below is clunky, I'll need to clean it up.
         System.out.println();
-        System.out.println(cli.defo.format(cli.pointsToGain(ratingArray,
-                0,cli.calculator.chanceToWin(ratingArray), 1)) +
+        System.out.println(cli.defo.format(pointsToGain) +
                 " points will be gained on a win.");
     }
 }
