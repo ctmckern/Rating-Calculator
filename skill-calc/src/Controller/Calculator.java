@@ -27,21 +27,27 @@ public class Calculator {
         return 1/(1+denominator);
     }
 
+    //Let's make a function to determine kFactor separately
     public double pointsToGain(double[]ratings, double expectedScore, double actualScore){
         double a = ratings[0];
         double b = ratings[1];
+        int kFactor = determineK(a);
+        double results = actualScore - expectedScore;
+        return kFactor * results;
+    }
+
+    private int determineK(double rating){
         int kFactor = 0;
-        if (a > 2400){
+        if (rating > 2400){
             kFactor = 16;
         }
-        else if (a < 2100){
+        else if (rating < 2100){
             kFactor = 32;
         }
         else {
             kFactor = 24;
         }
-        double results = actualScore - expectedScore;
-        return kFactor * results;
+        return kFactor;
     }
 
 

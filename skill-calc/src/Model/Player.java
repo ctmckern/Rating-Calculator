@@ -22,13 +22,13 @@ public class Player {
 
     //Getters
     public double getSkillRating() {
-        return skillRating;
+        return this.skillRating;
     }
     public double getSkillVariance() {
-        return skillVariance;
+        return this.skillVariance;
     }
     public int getMatchesPlayed() {
-        return matchesPlayed;
+        return this.matchesPlayed;
     }
 
     //Setters

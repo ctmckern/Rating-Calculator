@@ -39,6 +39,7 @@ public class Base {
     /* To do
     Work on setting up extensions to calculator for specific skill rating algorithms
     Develop more prompts for readability and communication
+    Also setup a loop so I don't have to restart the program after every calculation
      */
 
     private void getRatingFromUserInput(double[] ratings, int index) {
@@ -72,31 +73,46 @@ public class Base {
         System.out.println("Player one has a " + formattedChance + "% chance to win.");
     }
 
+    private int restart(){
+        String choice = in.nextLine();
+        int restartSignal = 0;
+        if (choice.equalsIgnoreCase("n")){
+            restartSignal = 0;
+        }
+        else restartSignal = 1;
+        return restartSignal;
+    }
+
 
     public static void main(String[] args) {
 
         Calculator calc = new Calculator();
 
         int i = 0;
+        int running = 1;
         Base cli = new Base(calc);
         double[] ratingArray = new double[2];
 
-        while (i < 2) {
-            cli.displayPrompt(i);
-            cli.getRatingFromUserInput(ratingArray, i);
-            i++;
+        while (running == 1) {
+            while (i < 2) {
+                cli.displayPrompt(i);
+                cli.getRatingFromUserInput(ratingArray, i);
+                i++;
+            }
+            cli.displayRatings(ratingArray);
+
+            double chance = cli.calculator.chanceToWin(ratingArray);
+            double formattedChance = Double.parseDouble(cli.defo.format(chance)) * 100;
+            //actualScore is hardcoded, might be better if I make a prompt for more accurate flexibility
+            double pointsToGain = cli.calculator.pointsToGain(ratingArray, chance, 1);
+
+            cli.displayChances(formattedChance);
+            //This below is clunky, I'll need to clean it up.
+            System.out.println();
+            System.out.println(cli.defo.format(pointsToGain) +
+                    " points will be gained on a win.");
+            System.out.println("Go again, Y or N? \n");
+            running = cli.restart();
         }
-        cli.displayRatings(ratingArray);
-
-        double chance = cli.calculator.chanceToWin(ratingArray);
-        double formattedChance = Double.parseDouble(cli.defo.format(chance))*100;
-        //actualScore is hardcoded, might be better if I make a prompt for more accurate flexibility
-        double pointsToGain = cli.calculator.pointsToGain(ratingArray, chance, 1);
-
-        cli.displayChances(formattedChance);
-        //This below is clunky, I'll need to clean it up.
-        System.out.println();
-        System.out.println(cli.defo.format(pointsToGain) +
-                " points will be gained on a win.");
     }
 }
