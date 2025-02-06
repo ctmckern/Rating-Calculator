@@ -94,6 +94,7 @@ public class Base {
         double[] ratingArray = new double[2];
 
         while (running == 1) {
+            i = 0;
             while (i < 2) {
                 cli.displayPrompt(i);
                 cli.getRatingFromUserInput(ratingArray, i);
