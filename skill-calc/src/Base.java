@@ -39,7 +39,6 @@ public class Base {
     /* To do
     Work on setting up extensions to calculator for specific skill rating algorithms
     Develop more prompts for readability and communication
-    Also setup a loop so I don't have to restart the program after every calculation
      */
 
     private void getRatingFromUserInput(double[] ratings, int index) {
